@@ -7,9 +7,13 @@
 .project
 nbproject
 
-# ignore reports for report
-assets/*
-protected/runtime/*
-protected/config/db.php
-
 /.metadata/
+
+# ignore symfony2
+web/bundles/
+app/bootstrap.php.cache
+app/cache/*
+app/logs/*
+build/
+vendor
+composer.phar
