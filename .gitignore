@@ -1,0 +1,15 @@
+# ignore svn
+.svn
+
+# ignore zendstudio and netbeans
+.settings
+.buildpath
+.project
+nbproject
+
+# ignore reports for report
+assets/*
+protected/runtime/*
+protected/config/db.php
+
+/.metadata/
