@@ -28,7 +28,16 @@ class PageController extends Controller
             $form->bindRequest($request);
             
             if ($form->isValid()) {
+                // sending mail
+                $message = \Swift_Message::newInstance()
+                	->setFrom($this->container->getParameter('blogger_blog.email.contact_email'), $this->container->getParameter('blogger_blog.email.contact_name'))
+                	->setTo($enquiry->getEmail(), $enquiry->getName())
+                	->setSubject($enquiry->getSubject())
+                	->setBody($this->renderView('BloggerBlogBundle:Page:contactEmail.html.twig', array('enquiry'=>$enquiry)));
+                $this->get('mailer')->send($message);
                 
+                // set success flash message
+                $this->get('session')->setFlash('blogger-notice', 'Your contact enquiry was successfully sent. Thank you!');
                 
                 $this->redirect($this->generateUrl('blogger_blog_page_contact'));
             }

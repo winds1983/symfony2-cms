@@ -2,16 +2,14 @@ parameters:
     database_driver:   pdo_mysql
     database_host:     127.0.0.1
     database_port:     ~
-    database_name:     smlog
+    database_name:     symfony
     database_user:     root
-    database_password: 123456
+    database_password: ~
 
-    mailer_transport:  gmail
-    mailer_encryption: ssl
-    mailer_auth_mode:  login
-    mailer_host:       smtp.gmail.com
-    mailer_user:       dev.winds@gmail.com
-    mailer_password:   sf81391210
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt

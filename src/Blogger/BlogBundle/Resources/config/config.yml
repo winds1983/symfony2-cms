@@ -1,0 +1,5 @@
+parameters:
+    # contact email
+    blogger_blog.email.contact_email: dev.winds@gmail.com
+    blogger_blog.email.contact_name:  Sun Feng
+

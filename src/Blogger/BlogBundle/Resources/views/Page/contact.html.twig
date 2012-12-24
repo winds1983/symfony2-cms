@@ -7,6 +7,12 @@
         <h1>Contact Us</h1>
     </header>
     
+    {% if app.session.hasFlash('blogger-notice') %}
+        <div class="blogger-notice">
+            {{ app.session.flash('blogger-notice') }}
+        </div>
+    {% endif %}
+    
     <p>Do you want to contact us?</p>
     
     <form action="{{ path('blogger_blog_page_contact') }}" method="post" {{ form_enctype(form) }} class="blogger">
