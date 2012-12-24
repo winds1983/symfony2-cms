@@ -1,13 +1,10 @@
 <?php
 namespace Blogger\BlogBundle\Controller;
 
-use Blogger\BlogBundle\Form\EnquiryType;
-
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Blogger\BlogBundle\Entity\Enquiry;
-
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Blogger\BlogBundle\Form\Type\EnquiryType;
 
 class PageController extends Controller
 {
@@ -23,7 +20,7 @@ class PageController extends Controller
     
     public function contactAction()
     {
-        /* $enquiry = new Enquiry();
+        $enquiry = new Enquiry();
         $form = $this->createForm(new EnquiryType(), $enquiry);
         
         $request = $this->getRequest();
@@ -32,9 +29,13 @@ class PageController extends Controller
             
             if ($form->isValid()) {
                 
+                
+                $this->redirect($this->generateUrl('blogger_blog_page_contact'));
             }
-        } */
+        }
         
-        return $this->render('BloggerBlogBundle:Page:contact.html.twig');
+        return $this->render('BloggerBlogBundle:Page:contact.html.twig', array(
+        	'form' => $form->createView(),
+        ));
     }
 }

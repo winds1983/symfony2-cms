@@ -1,6 +1,12 @@
 <?php
 namespace Blogger\BlogBundle\Entity;
 
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\MinLength;
+use Symfony\Component\Validator\Constraints\MaxLength;
+
 class Enquiry
 {
     protected $name;
@@ -10,6 +16,21 @@ class Enquiry
     protected $subject;
     
     protected $body;
+    
+    /**
+     * 定义验证器，需实现loadValidatorMetadata静态方法，使用ClassMetadata物件为实体属性设置验证条件
+     * @param ClassMetadata $metadata
+     */
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('name', new NotBlank())
+        		 ->addPropertyConstraint('email', new Email(array(
+        		       'message' => 'This email is invalid, please enter a real email address.',
+        		   )))
+        		 ->addPropertyConstraint('subject', new NotBlank())
+        		 ->addPropertyConstraint('subject', new MaxLength(50))
+        		 ->addPropertyConstraint('body', new MinLength(50));
+    }
     
     public function getName()
     {
