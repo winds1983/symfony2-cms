@@ -10,7 +10,27 @@ class PageController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('BloggerBlogBundle:Page:index.html.twig');
+        $em = $this->getDoctrine()
+        		   ->getEntityManager();
+        
+        // method 1:
+        //$blogs = $em->getRepository('BloggerBlogBundle:Blog')->findAll();
+        
+        // method 2: createQueryBuilder
+        /* $blogs = $em->createQueryBuilder()
+        			->select('b')
+        			->from('BloggerBlogBundle:Blog', 'b')
+        			->addOrderBy('b.created', 'DESC')
+        			->getQuery()
+        			->getResult(); */
+        
+        // method 3:
+        $blogs = $em->getRepository('BloggerBlogBundle:Blog')
+        			->getLastPosts();
+        
+        return $this->render('BloggerBlogBundle:Page:index.html.twig', array(
+            'blogs' => $blogs,
+        ));
     }
     
     public function aboutAction()
