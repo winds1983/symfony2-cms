@@ -1,0 +1,81 @@
+<?php
+
+namespace Blogger\BlogBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Blogger\BlogBundle\Entity\Comment
+ *
+ * @ORM\Table(name="comment")
+ * @ORM\Entity(repositoryClass="Blogger\BlogBundle\Entity\Repository\CommentRepository")
+ * @ORM\HasLifecycleCallbacks()
+ */
+class Comment
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $user;
+    
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $comment;
+    
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $approved;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Blog", inversedBy="comments")
+     * @ORM\JoinColumn(name="blog_id", referencedColumnName="id")
+     */
+    protected $blog;
+    
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $created;
+    
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $updated;
+    
+    public function __construct()
+    {
+        $this->setCreated(new \DateTime());
+        $this->setUpdated(new \DateTime());
+    
+        $this->setApproved(true);
+    }
+    
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedValue()
+    {
+        $this->setUpdated(new \DateTime());
+    }
+    
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}
