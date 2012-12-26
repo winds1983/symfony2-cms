@@ -1,3 +1,4 @@
+# page route
 blogger_blog_page_homepage:
     pattern:  /
     defaults: { _controller: BloggerBlogBundle:Page:index }
@@ -15,7 +16,14 @@ blogger_blog_page_contact:
     defaults: { _controller: BloggerBlogBundle:Page:contact }
     requirements:
         _method: GET|POST
-        
+
+blogger_blog_page_tag_search:
+    pattern: /tag/{tag}
+    defaults: { _controller: BloggerBlogBundle:Page:tagsearch }
+    requirements:
+        _method: GET
+
+# blog route
 blogger_blog_blog_show:
     pattern: /{id}
     defaults: { _controller: BloggerBlogBundle:Blog:show }
@@ -23,6 +31,13 @@ blogger_blog_blog_show:
         _method: GET
         id: \d+
         
+blogger_blog_blog_create:
+    pattern: /create
+    defaults: { _controller: BloggerBlogBundle:Blog:create }
+    requirements:
+        _method: GET|POST
+
+# comment route
 blogger_blog_comment_create:
     pattern:  /comment/{blog_id}
     defaults: { _controller: BloggerBlogBundle:Comment:create }
@@ -30,8 +45,3 @@ blogger_blog_comment_create:
         _method:  POST
         blog_id: \d+
         
-blogger_blog_page_tag_search:
-    pattern: /tag/{tag}
-    defaults: { _controller: BloggerBlogBundle:Page:tagsearch }
-    requirements:
-        _method: GET

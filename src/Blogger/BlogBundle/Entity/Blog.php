@@ -4,6 +4,9 @@ namespace Blogger\BlogBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints\NotBlank;
+
 /**
  * @ORM\Entity(repositoryClass="Blogger\BlogBundle\Entity\Repository\BlogRepository")
  * @ORM\Table(name="blog")
@@ -67,8 +70,8 @@ class Blog
     {
         $this->comments = new ArrayCollection();
         
-        $this->created = $this->setCreated(new \DateTime());
-        $this->updated = $this->setUpdated(new \DateTime());
+        $this->setCreated(new \DateTime());
+        $this->setUpdated(new \DateTime());
     }
     
     /**
@@ -324,6 +327,9 @@ class Blog
         return $this->comments;
     }
     
+    /**
+     * Format slug
+     */
     public function slugify($text)
     {
         // replace non letter or digits by -
@@ -348,5 +354,12 @@ class Blog
         }
     
         return $text;
+    }
+    
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('title', new NotBlank());
+        $metadata->addPropertyConstraint('author', new NotBlank());
+        $metadata->addPropertyConstraint('content', new NotBlank());
     }
 }
