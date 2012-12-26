@@ -46,4 +46,4 @@ Step 4:
 config apache ...
 
 
-Please write a questions to wiki if you have some questions.
+Please write your questions to [issues](https://github.com/winds1983/symfony2-cms/issues) if you have some questions.
