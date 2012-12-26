@@ -6,20 +6,20 @@ This is a CMS with Symfony 2.1.x
 Features
 ============
 
-1) How to create a Symfony Bundle
-2) Controller
---- How to render twig
---- How to use Doctrine
---- How to get request data
-3) Entity
---- Normal Entity and Form
---- Entity and Form with Doctrine ORM
---- Validate entity
---- CRUD
-4) Twig
---- usage of Twig
---- How to create a Twig extension
-5) ...
+ 1. How to create a Symfony Bundle
+ 2. Controller
+    --- How to render twig
+    --- How to use Doctrine
+    --- How to get request data
+ 3. Entity
+    --- Normal Entity and Form
+    --- Entity and Form with Doctrine ORM
+    --- Validate entity
+    --- CRUD
+ 4. Twig
+    --- usage of Twig
+    --- How to create a Twig extension
+ 5. To be continued
 
 Installing
 ============
