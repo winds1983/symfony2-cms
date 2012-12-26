@@ -6,7 +6,7 @@ class BloggerBlogExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-                'created_ago' => new \Twig_Filter_Method($this, 'createdAgo'),
+            'created_ago' => new \Twig_Filter_Method($this, 'createdAgo'),
         );
     }
     
@@ -17,26 +17,21 @@ class BloggerBlogExtension extends \Twig_Extension
             throw new \InvalidArgumentException("createdAgo is unable to handle dates in the future");
     
         $duration = "";
-        if ($delta < 60)
-        {
+        if ($delta < 5) {
+            $duration = 'just now';
+        } elseif ($delta < 60) {
             // Seconds
             $time = $delta;
             $duration = $time . " second" . (($time > 1) ? "s" : "") . " ago";
-        }
-        else if ($delta <= 3600)
-        {
+        } elseif ($delta <= 3600) {
             // Mins
             $time = floor($delta / 60);
             $duration = $time . " minute" . (($time > 1) ? "s" : "") . " ago";
-        }
-        else if ($delta <= 86400)
-        {
+        } elseif ($delta <= 86400) {
             // Hours
             $time = floor($delta / 3600);
             $duration = $time . " hour" . (($time > 1) ? "s" : "") . " ago";
-        }
-        else
-        {
+        } else {
             // Days
             $time = floor($delta / 86400);
             $duration = $time . " day" . (($time > 1) ? "s" : "") . " ago";
