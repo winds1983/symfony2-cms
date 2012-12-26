@@ -42,12 +42,12 @@ class Blog
     protected $content;
     
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected $image;
     
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $tags;
     
@@ -79,8 +79,8 @@ class Blog
      */
     public function setCreatedValue()
     {
-        $this->created = $this->setCreated(new \DateTime());
-        $this->updated = $this->setUpdated(new \DateTime());
+        $this->setCreated(new \DateTime());
+        $this->setUpdated(new \DateTime());
     }
     
     /**
@@ -88,7 +88,7 @@ class Blog
      */
     public function setUpdatedValue()
     {
-        $this->updated = $this->setUpdated(new \DateTime());
+        $this->setUpdated(new \DateTime());
     }
     
     /* public function __toString()
