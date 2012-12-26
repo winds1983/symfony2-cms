@@ -24,12 +24,12 @@ Features
 Installing
 ============
 
-Step 1:
+## Step 1:
 ============
 Download Symfony2 CMS 
 git clone https://github.com/winds1983/symfony2-cms.git
 
-Step 2:
+## Step 2:
 ============
 rename app/config/parameters.yml.dist to app/config/parameters.yml
 then modify the database and email configuration
@@ -37,12 +37,12 @@ then modify the database and email configuration
 and set app/cache and app/logs folder
 777 or 755 or 644
 
-Step 3:
+## Step 3:
 ============
 create database
 php app/console doctrine:schema:create
 
-Step 4:
+## Step 4:
 config apache ...
 
 
