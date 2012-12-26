@@ -26,7 +26,7 @@ Installing
 
 Step 1:
 ============
-Download Symfony2 CMS
+Download Symfony2 CMS 
 git clone https://github.com/winds1983/symfony2-cms.git
 
 Step 2:
