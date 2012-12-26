@@ -1,10 +1,19 @@
 <section class="section">
     <header>
+        <h3>Admin</h3>
+    </header>
+    <ul>
+        <li><a href="{{ path('blogger_blog_page_about') }}">Create new post</a></li>
+    </ul>
+</section>
+
+<section class="section">
+    <header>
         <h3>Tag Cloud</h3>
     </header>
     <p class="tags">
         {% for tag, weight in tags %}
-            <span class="weight-{{ weight }}">{{ tag }}</span>
+            <span class="weight-{{ weight }}"><a href="{{ path('blogger_blog_page_tag_search', { 'tag': tag }) }}">{{ tag }}</a></span>
         {% else %}
             <p>There are no tags</p>
         {% endfor %}

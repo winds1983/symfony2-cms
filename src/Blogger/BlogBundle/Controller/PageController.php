@@ -33,6 +33,20 @@ class PageController extends Controller
         ));
     }
     
+    public function tagsearchAction($tag)
+    {
+        $em = $this->getDoctrine()
+        		   ->getEntityManager();
+        
+        $blogs = $em->getRepository('BloggerBlogBundle:Blog')
+        			->getBlogsForTag($tag);
+        
+        return $this->render('BloggerBlogBundle:Page:tag_search.html.twig', array(
+            'blogs' => $blogs,
+            'tag' => $tag,
+        ));
+    }
+    
     public function aboutAction()
     {
         return $this->render('BloggerBlogBundle:Page:about.html.twig');

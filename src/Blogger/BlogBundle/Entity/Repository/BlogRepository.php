@@ -68,4 +68,20 @@ class BlogRepository extends EntityRepository
         }
         return $tagWeights;
     }
+    
+    public function getBlogsForTag($tag, $limit = null)
+    {
+        $qb = $this->createQueryBuilder('b')
+        		   ->select('b, c')
+        		   //->where('FIND_IN_SET(":tag", b.tags)')
+        		   ->leftJoin('b.comments', 'c')
+        		   ->addOrderBy('b.created', 'DESC');
+        		   //->setParameter('tag', strtolower(trim($tag)));
+        
+        if (false === is_null($limit))
+            $qb->setMaxResults($limit);
+        
+        return $qb->getQuery()
+        		   ->getResult();
+    }
 }

@@ -29,3 +29,9 @@ blogger_blog_comment_create:
     requirements:
         _method:  POST
         blog_id: \d+
+        
+blogger_blog_page_tag_search:
+    pattern: /tag/{tag}
+    defaults: { _controller: BloggerBlogBundle:Page:tagsearch }
+    requirements:
+        _method: GET
