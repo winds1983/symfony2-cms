@@ -44,6 +44,13 @@ blogger_blog_blog_update:
         _method: GET|POST
         id: \d+
 
+blogger_blog_blog_delete:
+    pattern: /delete/{id}
+    defaults: { _controller: BloggerBlogBundle:Blog:delete }
+    requirements:
+        _method: GET|POST
+        id: \d+
+
 # comment route
 blogger_blog_comment_create:
     pattern:  /comment/{blog_id}

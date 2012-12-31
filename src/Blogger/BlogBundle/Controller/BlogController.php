@@ -36,7 +36,7 @@ class BlogController extends Controller
     }
     
     /**
-     * Create new post
+     * Create post
      */
     public function createAction()
     {
@@ -95,5 +95,26 @@ class BlogController extends Controller
             'form' => $form->createView(),
             'actionPath' => $this->generateUrl('blogger_blog_blog_update', array('id'=>$blog->getId())),
         ));
+    }
+    
+    /**
+     * Delete post
+     */
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+    
+        $blog = $em->getRepository('BloggerBlogBundle:Blog')->find($id);
+    
+        if (!$blog) {
+            throw $this->createNotFoundException('Can not find this post.');
+        } else {
+            // Delete the blog entity
+            //$blog->removeComment($blog->getComments());
+            $em->remove($blog);
+            $em->flush();
+            
+            return $this->redirect($this->generateUrl('blogger_blog_page_homepage'));
+        }
     }
 }
