@@ -4,6 +4,25 @@
     </header>
     <ul>
         <li><a href="{{ path('blogger_blog_blog_create') }}">Create new post</a></li>
+        <li><a href="{{ path('blogger_blog_category_create') }}">Create new category</a></li>
+    </ul>
+</section>
+
+<section class="section">
+    <header>
+        <h3>Category</h3>
+    </header>
+    <ul class="category">
+    {% for category in categories %}
+        <li class="small">
+            <a href="{{ path('blogger_blog_category_show', { 'id': category.id }) }}">
+                {{ category.name }}
+            </a>
+            [{{ category.blogs|length }}]
+        </li>
+    {% else %}
+        <p>There are no categories</p>
+    {% endfor %}
     </ul>
 </section>
 

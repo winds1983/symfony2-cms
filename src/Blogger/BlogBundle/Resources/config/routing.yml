@@ -58,4 +58,38 @@ blogger_blog_comment_create:
     requirements:
         _method:  POST
         blog_id: \d+
-        
+
+# category route
+blogger_blog_category_index:
+    pattern:  /category
+    defaults: { _controller: BloggerBlogBundle:Category:index }
+    requirements:
+        _method: GET
+
+blogger_blog_category_show:
+    pattern: /category/{id}
+    defaults: { _controller: BloggerBlogBundle:Category:show }
+    requirements:
+        _method: GET
+        id: \d+
+
+blogger_blog_category_create:
+    pattern: /category/create
+    defaults: { _controller: BloggerBlogBundle:Category:create }
+    requirements:
+        _method: GET|POST
+
+blogger_blog_category_update:
+    pattern: /category/update/{id}
+    defaults: { _controller: BloggerBlogBundle:Category:update }
+    requirements:
+        _method: GET|POST
+        id: \d+
+
+blogger_blog_category_delete:
+    pattern: /category/delete/{id}
+    defaults: { _controller: BloggerBlogBundle:Category:delete }
+    requirements:
+        _method: GET|POST
+        id: \d+
+
