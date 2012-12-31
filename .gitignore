@@ -11,10 +11,11 @@ nbproject
 
 # ignore symfony2
 web/bundles/
+web/uploads/
 app/bootstrap.php.cache
 app/cache/*
 app/logs/*
 app/config/parameters.yml
+vendor/
 build/
-vendor
 composer.phar

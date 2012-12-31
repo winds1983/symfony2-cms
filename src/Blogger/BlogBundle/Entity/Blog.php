@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Entity(repositoryClass="Blogger\BlogBundle\Entity\Repository\BlogRepository")
  * @ORM\Table(name="blog")
@@ -45,6 +47,13 @@ class Blog
      * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected $image;
+    
+    /**
+     * must be a public property
+     * 
+     * @Assert\File(maxSize="6000000")
+     */
+    public $file;
     
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -382,6 +391,102 @@ class Blog
         }
     
         return $text;
+    }
+    
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->file) {
+            // do whatever you want to generate a unique name
+            $filename = sha1(uniqid(mt_rand(), true));
+            $this->image = $filename.'.'.$this->file->guessExtension();
+        }
+    }
+    
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if (null === $this->file) {
+            return;
+        }
+    
+        // if there is an error when moving the file, an exception will
+        // be automatically thrown by move(). This will properly prevent
+        // the entity from being persisted to the database on error
+        $this->file->move($this->getUploadRootDir(), $this->image);
+    
+        unset($this->file);
+    }
+    
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if ($this->file == $this->getAbsolutePath()) {
+            unlink($this->file);
+        }
+    }
+    
+    /**
+     * Method 1: upload a file
+     */
+    /* public function upload()
+    {
+        // the file property can be empty if the field is not required
+        if (null === $this->file) {
+            return;
+        }
+    
+        // use the original file name here but you should
+        // sanitize it at least to avoid any security issues
+    
+        // move takes the target directory and then the
+        // target filename to move to
+        $this->file->move(
+                $this->getUploadRootDir(),
+                $this->file->getClientOriginalName()
+        );
+    
+        // set the path property to the filename where you've saved the file
+        $this->image = $this->file->getClientOriginalName();
+    
+        // clean up the file property as you won't need it anymore
+        $this->file = null;
+    } */
+    
+    public function getAbsolutePath()
+    {
+        return null === $this->image
+        ? null
+        : $this->getUploadRootDir().'/'.$this->image;
+    }
+    
+    public function getWebPath()
+    {
+        return null === $this->image
+        ? null
+        : $this->getUploadDir().'/'.$this->image;
+    }
+    
+    protected function getUploadRootDir()
+    {
+        // the absolute directory path where uploaded
+        // documents should be saved
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+    
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'uploads/documents';
     }
     
     public static function loadValidatorMetadata(ClassMetadata $metadata)

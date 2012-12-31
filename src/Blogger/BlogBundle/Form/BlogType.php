@@ -15,8 +15,9 @@ class BlogType extends AbstractType
             //->add('slug')
             ->add('author')
             ->add('content')
-            ->add('image', 'file', array('required'=>false))
+            //->add('image', 'file', array('required'=>false))
             ->add('tags', 'text', array('required'=>false))
+            ->add('file')
             //->add('created')
             //->add('updated')
         ;

@@ -10,7 +10,7 @@
                 <h2><a href="{{ path('blogger_blog_blog_show', { 'id': blog.id }) }}">{{ blog.title }}</a></h2>
             </header>
 
-            {% if blog.image != '' %}<img src="{{ asset(['images/', blog.image]|join) }}" />{% endif %}
+            {% if blog.image != '' %}<img src="{{ asset(['uploads/documents/', blog.image]|join) }}" />{% endif %}
             <div class="snippet">
                 <p>{{ blog.content(500) }}</p>
                 <p class="continue"><a href="{{ path('blogger_blog_blog_show', { 'id': blog.id }) }}">Continue reading...</a> | <a href="{{ path('blogger_blog_blog_update', { 'id': blog.id }) }}">Update</a> | <a href="{{ path('blogger_blog_blog_delete', { 'id': blog.id }) }}">Delete</a></p>

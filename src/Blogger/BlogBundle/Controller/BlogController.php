@@ -51,6 +51,7 @@ class BlogController extends Controller
                 // Persist the blog entity
                 $em = $this->getDoctrine()
                 		   ->getEntityManager();
+                //$blog->upload();
                 $em->persist($blog);
                 $em->flush();
                 
@@ -85,6 +86,7 @@ class BlogController extends Controller
             
             if ($form->isValid()) {
                 // Update the blog entity
+                //$blog->upload();
                 $em->flush();
                 
                 return $this->redirect($this->generateUrl('blogger_blog_blog_show', array('id'=>$blog->getId())));
