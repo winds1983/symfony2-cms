@@ -54,7 +54,7 @@ class BlogController extends Controller
                 $em->persist($blog);
                 $em->flush();
                 
-                $this->redirect($this->generateUrl('blogger_blog_blog_show', array('id'=>$blog->getId())));
+                return $this->redirect($this->generateUrl('blogger_blog_blog_show', array('id'=>$blog->getId())));
             }
         }
         
@@ -87,7 +87,7 @@ class BlogController extends Controller
                 // Update the blog entity
                 $em->flush();
                 
-                $this->redirect($this->generateUrl('blogger_blog_blog_show', array('id'=>$blog->getId())));
+                return $this->redirect($this->generateUrl('blogger_blog_blog_show', array('id'=>$blog->getId())));
             }
         }
     
