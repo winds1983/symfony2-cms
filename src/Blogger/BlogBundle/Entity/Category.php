@@ -41,7 +41,22 @@ class Category
      */
     protected $blogs;
 
-
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->blogs = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * get category name for dropdownlist(blog form)
+     */
+    public function __toString()
+    {
+        return $this->getName();
+    }
+    
     /**
      * Get id
      *
@@ -50,13 +65,6 @@ class Category
     public function getId()
     {
         return $this->id;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->blogs = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**

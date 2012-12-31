@@ -17,6 +17,7 @@
             </div>
 
             <footer class="meta">
+                <p>Category: <a href="{{ path('blogger_blog_blog_show', { 'id': blog.id }) }}">{{ blog.category.name }}</a></p>
                 <p>Comments: <a href="{{ path('blogger_blog_blog_show', { 'id': blog.id }) }}#comments">{{ blog.comments|length }}</a></p>
                 <p>Posted by <span class="highlight">{{ blog.author }}</span> at {{ blog.created|date('h:iA') }}</p>
                 <p>Tags: <span class="highlight">{{ blog.tags }}</span></p>

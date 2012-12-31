@@ -11,6 +11,7 @@ class BlogType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+        	->add('category')
             ->add('title')
             //->add('slug')
             ->add('author')

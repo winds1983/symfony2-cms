@@ -15,8 +15,9 @@ class BlogRepository extends EntityRepository
     public function getLastPosts($limit = null)
     {
         $qb = $this->createQueryBuilder('b')
-        		   ->select('b, c')
+        		   ->select('b, c, ct')
         		   ->leftJoin('b.comments', 'c')
+        		   ->leftJoin('b.category', 'ct')
         		   ->addOrderBy('b.created', 'DESC');
         
         if (false === is_null($limit))
