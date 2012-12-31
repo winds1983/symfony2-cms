@@ -37,6 +37,13 @@ blogger_blog_blog_create:
     requirements:
         _method: GET|POST
 
+blogger_blog_blog_update:
+    pattern: /update/{id}
+    defaults: { _controller: BloggerBlogBundle:Blog:update }
+    requirements:
+        _method: GET|POST
+        id: \d+
+
 # comment route
 blogger_blog_comment_create:
     pattern:  /comment/{blog_id}

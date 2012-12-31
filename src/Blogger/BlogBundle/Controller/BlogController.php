@@ -60,6 +60,40 @@ class BlogController extends Controller
         
         return $this->render('BloggerBlogBundle:Blog:create.html.twig', array(
             'form' => $form->createView(),
+            'actionPath' => $this->generateUrl('blogger_blog_blog_create'),
+        ));
+    }
+    
+    /**
+     * Update post
+     */
+    public function updateAction($id)
+    {
+    	$em = $this->getDoctrine()->getEntityManager();
+        
+        $blog = $em->getRepository('BloggerBlogBundle:Blog')->find($id);
+        
+        if (!$blog) {
+            throw $this->createNotFoundException('Can not find this post.');
+        }
+        
+        $form = $this->createForm(new BlogType(), $blog);
+    
+        $request = $this->getRequest();
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($request);
+            
+            if ($form->isValid()) {
+                // Update the blog entity
+                $em->flush();
+                
+                $this->redirect($this->generateUrl('blogger_blog_blog_show', array('id'=>$blog->getId())));
+            }
+        }
+    
+        return $this->render('BloggerBlogBundle:Blog:update.html.twig', array(
+            'form' => $form->createView(),
+            'actionPath' => $this->generateUrl('blogger_blog_blog_update', array('id'=>$blog->getId())),
         ));
     }
 }

@@ -1,8 +1,8 @@
 {% extends 'BloggerBlogBundle::layout.html.twig' %}
 
-{% block title %}Create new post{% endblock%}
+{% block title %}Update post{% endblock%}
 
 {% block body %}
-    <h1>Create new post</h1>
+    <h1>Update post</h1>
     {% include 'BloggerBlogBundle:Blog:form.html.twig' with { 'form': form, 'actionPath': actionPath } %}
 {% endblock %}
