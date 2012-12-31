@@ -22,6 +22,10 @@ class BlogController extends Controller
             throw $this->createNotFoundException('Can not find this post.');
         }
         
+        // update hits
+        $blog->setHits($blog->getHits()+1);
+        $em->flush();
+        
         $comments = $em->getRepository('BloggerBlogBundle:Comment')
         			   ->getCommentsForBlog($blog->getId());
         

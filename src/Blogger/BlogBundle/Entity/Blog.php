@@ -52,6 +52,11 @@ class Blog
     protected $tags;
     
     /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $hits;
+    
+    /**
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="blog")
      */
     protected $comments;
@@ -246,6 +251,29 @@ class Blog
     public function getTags()
     {
         return $this->tags;
+    }
+    
+    /**
+     * Set hits
+     *
+     * @param integer $hits
+     * @return Blog
+     */
+    public function setHits($hits)
+    {
+        $this->hits = $hits;
+    
+        return $this;
+    }
+    
+    /**
+     * Get hits
+     *
+     * @return integer
+     */
+    public function getHits()
+    {
+        return $this->hits;
     }
 
     /**
