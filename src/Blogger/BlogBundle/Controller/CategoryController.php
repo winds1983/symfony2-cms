@@ -31,9 +31,6 @@ class CategoryController extends Controller
 
     /**
      * Finds and displays a Category entity.
-     *
-     * @Route("/{id}/show", name="category_show")
-     * @Template()
      */
     public function showAction($id)
     {
@@ -72,15 +69,13 @@ class CategoryController extends Controller
 
     /**
      * Creates a new Category entity.
-     *
-     * @Route("/create", name="category_create")
-     * @Method("POST")
-     * @Template("BloggerBlogBundle:Category:new.html.twig")
      */
     public function createAction(Request $request)
     {
         $entity  = new Category();
         $form = $this->createForm(new CategoryType(), $entity);
+        
+        $request = $this->getRequest();
         $form->bind($request);
 
         if ($form->isValid()) {
@@ -88,13 +83,13 @@ class CategoryController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('category_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('blogger_blog_category_show', array('id' => $entity->getId())));
         }
 
-        return array(
+        return $this->render('BloggerBlogBundle:Category:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
-        );
+        ));
     }
 
     /**
@@ -125,12 +120,8 @@ class CategoryController extends Controller
 
     /**
      * Edits an existing Category entity.
-     *
-     * @Route("/{id}/update", name="category_update")
-     * @Method("POST")
-     * @Template("BloggerBlogBundle:Category:edit.html.twig")
      */
-    public function updateAction(Request $request, $id)
+    public function updateAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -142,20 +133,22 @@ class CategoryController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createForm(new CategoryType(), $entity);
-        $editForm->bind($request);
+        
+        $request = $this->getRequest();
+        $editForm->bindRequest($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('category_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('blogger_blog_category_view', array('id' => $id)));
         }
 
-        return array(
+        return $this->render('BloggerBlogBundle:Category:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ));
     }
 
     /**

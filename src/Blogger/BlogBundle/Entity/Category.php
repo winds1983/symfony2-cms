@@ -34,7 +34,7 @@ class Category
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    protected $order;
+    protected $rank;
     
     /**
      * @ORM\OneToMany(targetEntity="Blog", mappedBy="category")
@@ -114,26 +114,26 @@ class Category
     }
 
     /**
-     * Set order
+     * Set rank
      *
-     * @param integer $order
+     * @param integer $rank
      * @return Category
      */
-    public function setOrder($order)
+    public function setRank($rank)
     {
-        $this->order = $order;
+        $this->rank = $rank;
     
         return $this;
     }
 
     /**
-     * Get order
+     * Get rank
      *
      * @return integer 
      */
-    public function getOrder()
+    public function getRank()
     {
-        return $this->order;
+        return $this->rank;
     }
 
     /**

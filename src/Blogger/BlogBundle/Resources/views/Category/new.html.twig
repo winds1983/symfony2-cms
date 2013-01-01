@@ -1,6 +1,11 @@
+{% extends 'BloggerBlogBundle::layout.html.twig' %}
+
+{% block title %}Create Category{% endblock %}
+
+{% block body %}
 <h1>Category creation</h1>
 
-<form action="{{ path('category_create') }}" method="post" {{ form_enctype(form) }}>
+<form action="{{ path('blogger_blog_category_create') }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     <p>
         <button type="submit">Create</button>
@@ -9,8 +14,9 @@
 
 <ul class="record_actions">
     <li>
-        <a href="{{ path('category') }}">
+        <a href="{{ path('blogger_blog_category_index') }}">
             Back to the list
         </a>
     </li>
 </ul>
+{% endblock %}
