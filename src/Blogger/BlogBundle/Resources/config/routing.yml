@@ -61,26 +61,26 @@ blogger_blog_comment_create:
 
 # category route
 blogger_blog_category_index:
-    pattern:  /category
+    pattern:  /admin/category
     defaults: { _controller: BloggerBlogBundle:Category:index }
     requirements:
         _method: GET
 
 blogger_blog_category_show:
-    pattern: /category/{id}
+    pattern: /admin/category/{id}
     defaults: { _controller: BloggerBlogBundle:Category:show }
     requirements:
         _method: GET
         id: \d+
 
 blogger_blog_category_create:
-    pattern: /category/create
+    pattern: /admin/category/create
     defaults: { _controller: BloggerBlogBundle:Category:create }
     requirements:
         _method: GET|POST
 
 blogger_blog_category_update:
-    pattern: /category/update/{id}
+    pattern: /admin/category/update/{id}
     defaults: { _controller: BloggerBlogBundle:Category:update }
     requirements:
         _method: GET|POST
