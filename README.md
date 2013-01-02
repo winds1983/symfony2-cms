@@ -44,7 +44,7 @@ To install symfony2-cms, do the following:
 * php composer.phar install
 * app/console assetic:dump
 
-NOTE: you can use the following command:
+**NOTE**: you can use the following command:
 * php composer.phar update
 
 ## Step 3:
