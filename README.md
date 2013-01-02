@@ -4,25 +4,25 @@ Symfony2 CMS
 This is a CMS with Symfony 2.1.x
 
 Features
-============
+--------
 
- 1. How to create a Symfony Bundle
- 2. Controller
-    --- How to render twig
-    --- How to use Doctrine
-    --- How to get request data
- 3. Entity
-    --- Normal Entity and Form
-    --- Entity and Form with Doctrine ORM
-    --- Validate entity
-    --- CRUD
- 4. Twig
-    --- usage of Twig
-    --- How to create a Twig extension
- 5. To be continued
+ - How to create a Symfony Bundle
+ - Controller
+    - How to render twig
+    -- How to use Doctrine
+    - How to get request data
+ - Entity
+    - Normal Entity and Form
+    - Entity and Form with Doctrine ORM
+    - Validate entity
+    - CRUD
+ - Twig
+    - usage of Twig
+    - How to create a Twig extension
+ - To be continued
 
 Installing
-============
+--------
 
 ## Step 1:
 ============
@@ -33,11 +33,11 @@ git clone https://github.com/winds1983/symfony2-cms.git
 ============
 To install symfony2-cms, do the following:
 
- cd symfony2-cms
- cp app/config/parameters.yml.dist app/config/parameters.yml
- curl -s https://getcomposer.org/installer | php
- php composer.phar install
- app/console assetic:dump
+* cd symfony2-cms
+* cp app/config/parameters.yml.dist app/config/parameters.yml
+* curl -s https://getcomposer.org/installer | php
+* php composer.phar install
+* app/console assetic:dump
 
 NOTE: you can use the following command:
 php composer.phar update
@@ -51,9 +51,9 @@ and set app/cache and app/logs folder
 
 ## Step 4:
 ============
- 1. create database:
+ - create database:
 php app/console doctrine:database:create
- 2. create table:
+ - create table:
 php app/console doctrine:schema:create
 
 ## Step 5:
