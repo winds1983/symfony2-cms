@@ -16,9 +16,14 @@ Features
     - Entity and Form with Doctrine ORM
     - Validate entity
     - CRUD
+    - Upload a file with doctrine
+    - Relationship of entity
  - Twig
     - usage of Twig
     - How to create a Twig extension
+ - Security
+    - User entity (implements UserInterface)
+    - Set app/config/security.yml
  - To be continued
 
 Installing
