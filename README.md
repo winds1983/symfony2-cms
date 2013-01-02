@@ -33,11 +33,11 @@ git clone https://github.com/winds1983/symfony2-cms.git
 ============
 To install symfony2-cms, do the following:
 
-cd symfony2-cms
-cp app/config/parameters.yml.dist app/config/parameters.yml
-curl -s https://getcomposer.org/installer | php
-php composer.phar install
-app/console assetic:dump
+ cd symfony2-cms
+ cp app/config/parameters.yml.dist app/config/parameters.yml
+ curl -s https://getcomposer.org/installer | php
+ php composer.phar install
+ app/console assetic:dump
 
 NOTE: you can use the following command:
 php composer.phar update
@@ -51,7 +51,9 @@ and set app/cache and app/logs folder
 
 ## Step 4:
 ============
-create database
+ 1. create database:
+php app/console doctrine:database:create
+ 2. create table:
 php app/console doctrine:schema:create
 
 ## Step 5:
