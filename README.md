@@ -25,12 +25,12 @@ Installing
 --------
 
 ## Step 1:
-============
+
 Download Symfony2 CMS 
-git clone https://github.com/winds1983/symfony2-cms.git
+* git clone https://github.com/winds1983/symfony2-cms.git
 
 ## Step 2:
-============
+
 To install symfony2-cms, do the following:
 
 * cd symfony2-cms
@@ -40,23 +40,24 @@ To install symfony2-cms, do the following:
 * app/console assetic:dump
 
 NOTE: you can use the following command:
-php composer.phar update
+* php composer.phar update
 
 ## Step 3:
-============
-modify the database and email configuration in app/config/parameters.yml
 
-and set app/cache and app/logs folder
+* modify the database and email configuration in app/config/parameters.yml
+
+* and set app/cache and app/logs folder
 777 or 755 or 644
 
 ## Step 4:
-============
+
  - create database:
-php app/console doctrine:database:create
+    - php app/console doctrine:database:create
  - create table:
-php app/console doctrine:schema:create
+    - php app/console doctrine:schema:create
 
 ## Step 5:
+
 config apache ...
 
 It should now work. If you run into any issues, feel free to open a new issue or make a new pull request.
