@@ -26,3 +26,5 @@ form.blogger ul li { color: #ff0000; margin-bottom: 5px; }
 .comments .comment p { margin-bottom: 0; }
 .comments h3 { background: #eee; padding: 10px; font-size: 20px; margin-bottom: 20px; clear: both; }
 .comments .previous-comments { margin-bottom: 20px; }
+.comments header p { color: #888888; }
+.comments img { width: 36px; height: 36px; float: left; border-radius: 4px 4px 4px 4px; margin-right: 10px; }

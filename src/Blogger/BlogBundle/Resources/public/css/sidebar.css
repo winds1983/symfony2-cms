@@ -8,6 +8,7 @@
 .sidebar .small { font-size: 12px; }
 .sidebar .comment p { margin-bottom: 5px; }
 .sidebar .comment { margin-bottom: 10px; padding-bottom: 10px; }
+.sidebar .comment header p { color: #888888; }
 .sidebar .tags { font-weight: bold; }
 .sidebar .tags span { color: #000; font-size: 12px; }
 .sidebar .tags .weight-1 { font-size: 12px; }

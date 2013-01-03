@@ -1,5 +1,6 @@
 {% for comment in comments %}
     <article class="comment {{ cycle(['odd', 'even'], loop.index0) }}" id="comment-{{ comment.id }}">
+        <img src="{{ asset('img/gravatar-user.png') }}" />
         <header>
             <p><span class="highlight">{{ comment.user }}</span> commented <time datetime="{{ comment.created|date('c') }}">{{ comment.created|created_ago }}</time></p>
         </header>
