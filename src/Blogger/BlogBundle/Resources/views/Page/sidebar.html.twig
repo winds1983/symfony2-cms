@@ -15,7 +15,7 @@
     <ul class="category">
     {% for category in categories %}
         <li class="small">
-            <a href="{{ path('blogger_blog_category_show', { 'id': category.id }) }}">
+            <a href="{{ path('blogger_blog_page_category_blogs', { 'slug': category.slug }) }}">
                 {{ category.name }}
             </a>
             [{{ category.blogs|length }}]

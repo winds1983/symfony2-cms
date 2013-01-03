@@ -48,6 +48,23 @@ class PageController extends Controller
         ));
     }
     
+    public function categoryAction($slug)
+    {
+        $em = $this->getDoctrine()
+        		   ->getEntityManager();
+    
+        $blogs = $em->getRepository('BloggerBlogBundle:Blog')
+        			->getBlogsForCategorySlug($slug);
+        
+        $category = $em->getRepository('BloggerBlogBundle:Category')
+        			   ->findOneBy(array('slug' => $slug));
+    
+        return $this->render('BloggerBlogBundle:Page:category_blogs.html.twig', array(
+            'blogs' => $blogs,
+            'category' => $category,
+        ));
+    }
+    
     public function aboutAction()
     {
         return $this->render('BloggerBlogBundle:Page:about.html.twig');

@@ -23,6 +23,12 @@ blogger_blog_page_tag_search:
     requirements:
         _method: GET
 
+blogger_blog_page_category_blogs:
+    pattern: /category/{slug}
+    defaults: { _controller: BloggerBlogBundle:Page:category }
+    requirements:
+        _method: GET
+
 # blog route
 blogger_blog_blog_show:
     pattern: /{id}

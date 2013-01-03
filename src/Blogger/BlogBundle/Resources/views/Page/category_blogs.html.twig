@@ -1,8 +1,12 @@
 {% extends 'BloggerBlogBundle::layout.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Search by Category "{{ category.name }}"{% endblock %}
 
 {% block body %}
+    <header>
+        <h1>Search by Category "{{ category.name }}"</h1>
+    </header>
+
 	{% for blog in blogs %}
 	   <article class="blog">
             <div class="date"><time datetime="{{ blog.created|date('c') }}">{{ blog.created|date('l, F j, Y') }}</time></div>
@@ -13,7 +17,7 @@
             {% if blog.image != '' %}<img src="{{ asset(['uploads/documents/', blog.image]|join) }}" />{% endif %}
             <div class="snippet">
                 <p>{{ blog.content(500) }}</p>
-                <p class="continue"><a href="{{ path('blogger_blog_blog_show', { 'id': blog.id }) }}">Continue reading...</a> | <a href="{{ path('blogger_blog_blog_update', { 'id': blog.id }) }}">Update</a> | <a href="{{ path('blogger_blog_blog_delete', { 'id': blog.id }) }}" onclick="return confirm('Are you sure you want to delete this item?')">Delete</a></p>
+                <p class="continue"><a href="{{ path('blogger_blog_blog_show', { 'id': blog.id }) }}">Continue reading...</a></p>
             </div>
 
             <footer class="meta">

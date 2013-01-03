@@ -85,4 +85,22 @@ class BlogRepository extends EntityRepository
         return $qb->getQuery()
         		   ->getResult();
     }
+    
+    public function getBlogsForCategorySlug($slug, $limit = null)
+    {
+        $qb = $this->createQueryBuilder('b')
+        		   ->select('b, c, ct')
+        		   ->leftJoin('b.comments', 'c')
+        		   //->leftJoin('b.category', 'ct', 'WITH', "ct.slug = :slug")
+        		   ->leftJoin('b.category', 'ct')
+        		   ->where('ct.slug = :slug')
+        		   ->addOrderBy('b.created', 'DESC')
+        		   ->setParameter('slug', strtolower(trim($slug)));
+    
+        if (false === is_null($limit))
+            $qb->setMaxResults($limit);
+    
+        return $qb->getQuery()
+        		   ->getResult();
+    }
 }
