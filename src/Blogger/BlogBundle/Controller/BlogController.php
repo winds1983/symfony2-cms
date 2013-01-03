@@ -10,13 +10,14 @@ class BlogController extends Controller
     /**
      * Show post
      * 
-     * @param integer $id
+     * @param string $id
      */
-    public function showAction($id)
+    public function showAction($slug)
     {
         $em = $this->getDoctrine()->getEntityManager();
         
-        $blog = $em->getRepository('BloggerBlogBundle:Blog')->find($id);
+        $blog = $em->getRepository('BloggerBlogBundle:Blog')
+        		   ->findOneBy(array('slug' => $slug));
         
         if (!$blog) {
             throw $this->createNotFoundException('Can not find this post.');
@@ -32,6 +33,34 @@ class BlogController extends Controller
         return $this->render('BloggerBlogBundle:Blog:show.html.twig', array(
             'blog' => $blog,
             'comments' => $comments,
+        ));
+    }
+    
+    /**
+     * Show post
+     *
+     * @param integer $id
+     */
+    public function viewAction($id)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+    
+        $blog = $em->getRepository('BloggerBlogBundle:Blog')->find($id);
+    
+        if (!$blog) {
+            throw $this->createNotFoundException('Can not find this post.');
+        }
+    
+        // update hits
+        $blog->setHits($blog->getHits()+1);
+        $em->flush();
+    
+        $comments = $em->getRepository('BloggerBlogBundle:Comment')
+        ->getCommentsForBlog($blog->getId());
+    
+        return $this->render('BloggerBlogBundle:Blog:show.html.twig', array(
+                'blog' => $blog,
+                'comments' => $comments,
         ));
     }
     
