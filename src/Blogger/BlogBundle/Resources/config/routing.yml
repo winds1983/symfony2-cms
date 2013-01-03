@@ -42,22 +42,24 @@ blogger_blog_blog_show:
     defaults: { _controller: BloggerBlogBundle:Blog:show }
     requirements:
         _method: GET
-        
+
+### NOTE: the blog create route can not use "/create" if use slug to filter blog
+### it will think the route "/create" is a blog slug
 blogger_blog_blog_create:
-    pattern: /create
+    pattern: /blog/create
     defaults: { _controller: BloggerBlogBundle:Blog:create }
     requirements:
         _method: GET|POST
 
 blogger_blog_blog_update:
-    pattern: /update/{id}
+    pattern: /blog/update/{id}
     defaults: { _controller: BloggerBlogBundle:Blog:update }
     requirements:
         _method: GET|POST
         id: \d+
 
 blogger_blog_blog_delete:
-    pattern: /delete/{id}
+    pattern: /blog/delete/{id}
     defaults: { _controller: BloggerBlogBundle:Blog:delete }
     requirements:
         _method: GET|POST

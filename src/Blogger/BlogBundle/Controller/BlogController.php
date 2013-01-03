@@ -10,7 +10,7 @@ class BlogController extends Controller
     /**
      * Show post
      * 
-     * @param string $id
+     * @param string $slug
      */
     public function showAction($slug)
     {
@@ -40,6 +40,7 @@ class BlogController extends Controller
      * Show post
      *
      * @param integer $id
+     * @deprecated
      */
     public function viewAction($id)
     {
@@ -56,7 +57,7 @@ class BlogController extends Controller
         $em->flush();
     
         $comments = $em->getRepository('BloggerBlogBundle:Comment')
-        ->getCommentsForBlog($blog->getId());
+        			   ->getCommentsForBlog($blog->getId());
     
         return $this->render('BloggerBlogBundle:Blog:show.html.twig', array(
                 'blog' => $blog,
@@ -84,7 +85,8 @@ class BlogController extends Controller
                 $em->persist($blog);
                 $em->flush();
                 
-                return $this->redirect($this->generateUrl('blogger_blog_blog_show', array('id'=>$blog->getId())));
+                //return $this->redirect($this->generateUrl('blogger_blog_blog_show', array('id'=>$blog->getId())));
+                return $this->redirect($this->generateUrl('blogger_blog_blog_show', array('slug'=>$blog->getSlug())));
             }
         }
         
@@ -118,7 +120,8 @@ class BlogController extends Controller
                 //$blog->upload();
                 $em->flush();
                 
-                return $this->redirect($this->generateUrl('blogger_blog_blog_show', array('id'=>$blog->getId())));
+                //return $this->redirect($this->generateUrl('blogger_blog_blog_show', array('id'=>$blog->getId())));
+                return $this->redirect($this->generateUrl('blogger_blog_blog_show', array('slug'=>$blog->getSlug())));
             }
         }
     
