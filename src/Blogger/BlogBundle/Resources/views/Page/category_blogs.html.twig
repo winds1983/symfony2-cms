@@ -24,7 +24,11 @@
                 <p>Category: <a href="{{ path('blogger_blog_page_category_blogs', { 'slug': blog.category.slug }) }}">{{ blog.category.name }}</a></p>
                 <p>Comments: <a href="{{ path('blogger_blog_blog_show', { 'slug': blog.slug }) }}#comments">{{ blog.comments|length }}</a></p>
                 <p>Posted by <span class="highlight">{{ blog.author }}</span> at {{ blog.created|date('h:iA') }}</p>
-                <p>Tags: <span class="highlight">{{ blog.tags }}</span></p>
+                <p>Tags:
+                    {% for tag in blog.tagsLink %}
+                        <a href="{{ path('blogger_blog_page_tag_search', { 'tag': tag|trim }) }}">{{ tag|trim }}</a>
+                    {% endfor %}
+                </p>
                 <p>Hits: <span class="highlight">{{ blog.hits }}</span></p>
             </footer>
         </article>

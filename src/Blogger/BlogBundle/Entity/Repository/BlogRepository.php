@@ -73,9 +73,10 @@ class BlogRepository extends EntityRepository
     public function getBlogsForTag($tag, $limit = null)
     {
         $qb = $this->createQueryBuilder('b')
-        		   ->select('b, c')
+        		   ->select('b, c, ct')
         		   //->where('FIND_IN_SET(":tag", b.tags)')
         		   ->leftJoin('b.comments', 'c')
+        		   ->leftJoin('b.category', 'ct')
         		   ->addOrderBy('b.created', 'DESC');
         		   //->setParameter('tag', strtolower(trim($tag)));
         

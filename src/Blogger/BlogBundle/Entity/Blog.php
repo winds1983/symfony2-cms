@@ -268,6 +268,15 @@ class Blog
         return $this->tags;
     }
     
+    public function getTagsLink()
+    {
+        $tags = array();
+        if ($this->getTags() != '') {
+            $tags = explode(',', $this->getTags());
+        }
+        return $tags;
+    }
+    
     /**
      * Set hits
      *
