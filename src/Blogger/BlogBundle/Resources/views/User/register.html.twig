@@ -1,0 +1,8 @@
+{% extends 'BloggerBlogBundle::layout.html.twig' %}
+
+{% block title %}Register{% endblock%}
+
+{% block body %}
+    <h1>Register</h1>
+    {% include 'BloggerBlogBundle:User:form.html.twig' with { 'form': form, 'actionPath': actionPath } %}
+{% endblock %}

@@ -1,3 +1,5 @@
+## FRONT ROUTE ##
+
 # page route
 blogger_blog_page_homepage:
     pattern:  /
@@ -29,6 +31,13 @@ blogger_blog_page_category_blogs:
     requirements:
         _method: GET
 
+# user register route
+blogger_blog_user_register:
+    pattern: /register
+    defaults: { _controller: BloggerBlogBundle:User:register }
+    requirements:
+        _method: GET|POST
+
 # blog route
 #blogger_blog_blog_show:
 #    pattern: /{id}
@@ -42,6 +51,8 @@ blogger_blog_blog_show:
     defaults: { _controller: BloggerBlogBundle:Blog:show }
     requirements:
         _method: GET
+
+## ADMIN ROUTE ##
 
 ### NOTE: the blog create route can not use "/create" if use slug to filter blog
 ### it will think the route "/create" is a blog slug
@@ -107,3 +118,10 @@ blogger_blog_category_delete:
         _method: GET|POST
         id: \d+
 
+# user route
+blogger_blog_user_update:
+    pattern: /admin/user/update/{$id}
+    defaults: { _controller: BloggerBlogBundle:User:update }
+    requirements:
+        _method: GET|POST
+        id: \d+
