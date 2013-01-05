@@ -1,13 +1,11 @@
 # Security Login
 login:
-    pattern:   /login
+    pattern:   /admin/login
     defaults:  { _controller: BloggerBlogBundle:Security:login }
 login_check:
-    pattern:   /login_check
-    defaults:  { _controller: BloggerBlogBundle:Security:logincheck }
+    pattern:   /admin/login_check
 logout:
-    pattern:   /logout
-    defaults:  { _controller: BloggerBlogBundle:Security:logout }
+    pattern:   /admin/logout
 
 # BloggerBlogBundle
 blogger_blog:

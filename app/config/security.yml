@@ -23,27 +23,28 @@ security:
             security: false
 
         login:
-            pattern:  ^/login$
+            pattern:  ^/admin/login$
             security: false
 
+        # NOTE: login_path, check_path and logout path must under the route of pattern
         secured_area:
             pattern:    ^/admin/
             form_login:
-                check_path: /login_check
-                login_path: /login
+                login_path: /admin/login
+                check_path: /admin/login_check
             logout:
-                path:   /logout
+                path:   /admin/logout
                 target: /
             #anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"
             
-        admin_area:
-            pattern:    ^/admin
-            http_basic: ~
+        #admin_area:
+        #    pattern:    ^/admin
+        #    http_basic: ~
 
     access_control:
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         #- { path: ^/_internal/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, roles: ROLE_ADMIN }

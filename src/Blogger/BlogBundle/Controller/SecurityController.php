@@ -31,14 +31,4 @@ class SecurityController extends Controller
 			)
         );
     }
-    
-    public function logincheckAction()
-    {
-        
-    }
-    
-    public function logoutAction()
-    {
-        
-    }
 }
