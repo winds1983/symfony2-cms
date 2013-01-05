@@ -26,7 +26,7 @@ security:
             pattern:  ^/admin/login$
             security: false
 
-        # NOTE: login_path, check_path and logout path must under the route of pattern
+        # NOTE: login_path, check_path and logout path must match the pattern of the firewall
         secured_area:
             pattern:    ^/admin/
             form_login:
