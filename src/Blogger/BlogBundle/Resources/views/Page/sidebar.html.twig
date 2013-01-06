@@ -14,7 +14,7 @@
     </header>
     <ul class="category">
     {% for category in categories %}
-        <li class="small">
+        <li>
             <a href="{{ path('blogger_blog_page_category_blogs', { 'slug': category.slug }) }}">
                 {{ category.name }}
             </a>
