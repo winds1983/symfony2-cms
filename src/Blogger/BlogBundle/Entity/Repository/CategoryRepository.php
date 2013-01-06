@@ -14,7 +14,12 @@ class CategoryRepository extends EntityRepository
 {
     public function getAllCategory()
     {
-        return $this->findAll();
+        //return $this->findAll();
+        $qb = $this->createQueryBuilder('ct')
+        		   ->orderBy('ct.rank');
+        
+        return $qb->getQuery()
+        		   ->getResult();
     }
     
     public function getBlogsForCategory($categoryId, $limit = null)
