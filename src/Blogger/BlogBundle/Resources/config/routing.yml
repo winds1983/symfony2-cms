@@ -19,6 +19,13 @@ blogger_blog_page_contact:
     requirements:
         _method: GET|POST
 
+blogger_blog_page_list:
+    pattern: /page/{page}
+    defaults: { _controller: BloggerBlogBundle:Page:list }
+    requirements:
+        _method: GET|POST
+        page: \d+
+
 blogger_blog_page_tag_search:
     pattern: /tag/{tag}
     defaults: { _controller: BloggerBlogBundle:Page:tagsearch }

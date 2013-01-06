@@ -27,6 +27,22 @@ class BlogRepository extends EntityRepository
         		   ->getResult();
     }
     
+    public function getListPosts($pageSize, $page)
+    {
+        $offset = $pageSize * ($page - 1);
+        
+        $qb = $this->createQueryBuilder('b')
+        		   ->select('b, c, ct')
+        		   ->leftJoin('b.comments', 'c')
+        		   ->leftJoin('b.category', 'ct')
+        		   ->addOrderBy('b.created', 'DESC')
+        		   ->setFirstResult($offset)
+        		   ->setMaxResults($pageSize);
+    
+        return $qb->getQuery()
+        		   ->getResult();
+    }
+    
     public function getTags()
     {
         $blogTags = $this->createQueryBuilder('b')

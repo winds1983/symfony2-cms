@@ -29,3 +29,6 @@ form.blogger ul li { color: #ff0000; margin-bottom: 5px; }
 .comments .previous-comments { margin-bottom: 20px; }
 .comments header p { color: #888888; }
 .comments img { width: 36px; height: 36px; float: left; border-radius: 4px 4px 4px 4px; margin-right: 10px; }
+
+.pagination ul { list-style: none }
+.pagination ul li { float: left; padding: 3px 5px; }

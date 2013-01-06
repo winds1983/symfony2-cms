@@ -32,7 +32,18 @@
 	    <p>There are no blog entries for symblog</p>
 	{% endfor %}
 	
-	<div>
-        <a href="{{ path('blogger_blog_page_list', { 'page': 2 }) }}"><< Next page >><a>
-    </div>
+	{% if totalPageNum > 1 %}
+    	<div class="pagination">
+    	   <ul>
+    	       <li>Total: {{ totalPageNum }}</li>
+    	       {% for page in 1..totalPageNum %}
+    	           {% if page == currentPage %}
+    	               <li>{{ page }}</li>
+    	           {% else %}
+    	               <li class="active"><a href="{{ path('blogger_blog_page_list', { 'page': page }) }}">{{ page }}</a></li>
+    	           {% endif %}
+    	       {% endfor %}
+    	   </ul>
+    	</div>
+	{% endif %}
 {% endblock %}

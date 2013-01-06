@@ -34,6 +34,37 @@ class PageController extends Controller
         ));
     }
     
+    /**
+     * list blogs
+     */
+    public function listAction($page)
+    {
+        $pageSize = $this->container->getParameter('blogger_blog.blog.pagesize');
+        
+        $em = $this->getDoctrine()
+        		   ->getEntityManager();
+        
+        $totalBlogs = $em->getRepository('BloggerBlogBundle:Blog')
+        				 ->findAll();
+        $totalPageNum = ceil(count($totalBlogs) / $pageSize);
+        
+        if ($page > $totalPageNum || $page < 1) {
+            throw $this->createNotFoundException('Can not find this request.');
+        }
+    
+        $blogs = $em->getRepository('BloggerBlogBundle:Blog')
+        			->getListPosts($pageSize, $page);
+    
+        return $this->render('BloggerBlogBundle:Page:list.html.twig', array(
+        	'blogs' => $blogs,
+            'totalPageNum' => $totalPageNum,
+            'currentPage' => $page,
+        ));
+    }
+    
+    /**
+     * search blogs by tag
+     */
     public function tagsearchAction($tag)
     {
         $em = $this->getDoctrine()
@@ -48,6 +79,9 @@ class PageController extends Controller
         ));
     }
     
+    /**
+     * search blogs by slug of category
+     */
     public function categoryAction($slug)
     {
         $em = $this->getDoctrine()
@@ -65,11 +99,17 @@ class PageController extends Controller
         ));
     }
     
+    /**
+     * about page
+     */
     public function aboutAction()
     {
         return $this->render('BloggerBlogBundle:Page:about.html.twig');
     }
     
+    /**
+     * contact page and sending email
+     */
     public function contactAction()
     {
         $enquiry = new Enquiry();
@@ -100,6 +140,9 @@ class PageController extends Controller
         ));
     }
     
+    /**
+     * sidebar for layout
+     */
     public function sidebarAction()
     {
         $em = $this->getDoctrine()

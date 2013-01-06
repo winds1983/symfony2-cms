@@ -2,5 +2,10 @@ parameters:
     # contact email
     blogger_blog.email.contact_email: dev.winds@gmail.com
     blogger_blog.email.contact_name:  Sun Feng
+    
+    # comment for sidebar
     blogger_blog.comments.latest_comment_limit: 10
+    
+    # blog list
+    blogger_blog.blog.pagesize: 5
 
