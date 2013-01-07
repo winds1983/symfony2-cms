@@ -3,8 +3,7 @@
 namespace Blogger\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-//use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -21,7 +20,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @UniqueEntity("username")
  * @UniqueEntity("email")
  */
-class User implements AdvancedUserInterface, \Serializable
+class User_bak implements UserInterface, \Serializable
 {
     /**
      * @ORM\Column(type="integer")
@@ -222,25 +221,5 @@ class User implements AdvancedUserInterface, \Serializable
         $metadata->addPropertyConstraint('password', new NotBlank());
         $metadata->addPropertyConstraint('email', new NotBlank())
         		 ->addPropertyConstraint('email', new Email());
-    }
-    
-    public function isAccountNonExpired()
-    {
-        return true;
-    }
-    
-    public function isAccountNonLocked()
-    {
-        return true;
-    }
-    
-    public function isCredentialsNonExpired()
-    {
-        return true;
-    }
-    
-    public function isEnabled()
-    {
-        return $this->isActive;
     }
 }

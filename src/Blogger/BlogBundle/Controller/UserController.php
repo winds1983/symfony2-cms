@@ -27,7 +27,10 @@ class UserController extends Controller
             		->setFrom($this->container->getParameter('blogger_blog.email.contact_email'), $this->container->getParameter('blogger_blog.email.contact_name'))
             		->setTo($user->getEmail(), $user->getUsername())
             		->setSubject('Your registration information confirmation')
-            		->setBody($this->renderView('BloggerBlogBundle:User:registerEmail.html.twig', array('user'=>$user)));
+            		->setBody($this->renderView('BloggerBlogBundle:User:registerEmail.html.twig', array(
+            		    	'user' => $user,
+            		    	'loginAbsolutePath' => $this->generateUrl('login', array(), true),
+						)));
             	$this->get('mailer')->send($message);
             	
             	// generate and set password
