@@ -7,9 +7,11 @@ parameters:
     database_password: ~
 
     mailer_transport:  smtp
-    mailer_host:       127.0.0.1
-    mailer_user:       ~
-    mailer_password:   ~
+    mailer_encryption: ssl
+    mailer_auth_mode:  login
+    mailer_host:       smtp.gmail.com
+    mailer_user:       your_email@gmail.com
+    mailer_password:   your_password
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt

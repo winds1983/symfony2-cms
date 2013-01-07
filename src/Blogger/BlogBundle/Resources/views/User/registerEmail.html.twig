@@ -1,0 +1,11 @@
+<h3>Hi {{ user.username }}<h3>
+
+This is your registration information confirmation.
+
+Username: {{ user.username }}
+Password: {{ user.password }}
+
+You can use the above information to sign in our website:
+{{ path('login') }}
+
+{{ "now" | date("Y-m-d H:i") }}
