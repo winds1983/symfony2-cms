@@ -13,6 +13,8 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Blogger\BlogBundle\Entity\User
  *
@@ -55,11 +57,19 @@ class User implements AdvancedUserInterface, \Serializable
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="Group", inversedBy="users")
+     *
+     */
+    private $groups;
 
     public function __construct()
     {
         $this->isActive = true;
         $this->salt = md5(uniqid(null, true));
+        
+        $this->groups = new ArrayCollection();
     }
 
     /**
@@ -91,7 +101,8 @@ class User implements AdvancedUserInterface, \Serializable
      */
     public function getRoles()
     {
-        return array('ROLE_USER');
+        //return array('ROLE_USER');
+        return $this->groups->toArray();
     }
 
     /**
@@ -242,5 +253,38 @@ class User implements AdvancedUserInterface, \Serializable
     public function isEnabled()
     {
         return $this->isActive;
+    }
+
+    /**
+     * Add groups
+     *
+     * @param \Blogger\BlogBundle\Entity\Group $groups
+     * @return User
+     */
+    public function addGroup(\Blogger\BlogBundle\Entity\Group $groups)
+    {
+        $this->groups[] = $groups;
+    
+        return $this;
+    }
+
+    /**
+     * Remove groups
+     *
+     * @param \Blogger\BlogBundle\Entity\Group $groups
+     */
+    public function removeGroup(\Blogger\BlogBundle\Entity\Group $groups)
+    {
+        $this->groups->removeElement($groups);
+    }
+
+    /**
+     * Get groups
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGroups()
+    {
+        return $this->groups;
     }
 }
