@@ -47,4 +47,7 @@ security:
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         #- { path: ^/_internal/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
         - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/admin/user/*, roles: ROLE_ADMIN }
+        - { path: ^/admin/category/*, roles: ROLE_ADMIN }
+        - { path: ^/admin/blog/delete/*, roles: ROLE_ADMIN }
+        - { path: ^/admin, roles: ROLE_USER }
